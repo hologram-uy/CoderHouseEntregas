@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Pelota",
+    "price": 190,
+    "thumbnail": "https://cdn.pixabay.com/photo/2014/04/03/10/11/soccer-ball-310065_960_720.png",
+    "id": 1
+  },
+  {
+    "title": "Calculadora",
+    "price": 1200,
+    "thumbnail": "https://st2.depositphotos.com/1008280/7568/i/450/depositphotos_75687653-stock-photo-calculator-on-a-white-background.jpg",
+    "id": 2
+  },
+  {
+    "title": "Piscina",
+    "price": 3000,
+    "thumbnail": "https://www.tumejoropcion.com.uy/wp-content/uploads/2021/11/PISCINA-REDONDA-INTIME.jpg",
+    "id": 3
+  },
+  {
+    "title": "Coche",
+    "price": 20,
+    "thumbnail": "https://thumbs.dreamstime.com/z/cup%C3%A9-amarillo-del-coche-del-juguete-10784537.jpg",
+    "id": 4
+  },
+  {
+    "title": "Sombrilla",
+    "price": 900,
+    "thumbnail": "https://f.fcdn.app/imgs/b8a992/albanes.com.uy/albauy/b370/webp/catalogo/17894_17894_1/2000-2000/sombrilla-jardin-con-brazo-lateral-2-7-m-sd-unica.jpg",
+    "id": 5
+  },
+  {
+    "title": "Gorro",
+    "price": 240,
+    "thumbnail": "https://img.lojasrenner.com.br/item/588591816/large/1.jpg",
+    "id": 6
+  },
+  {
+    "title": "Mouse",
+    "price": 160,
+    "thumbnail": "https://d391ci4kxgasl8.cloudfront.net/fit-in/524x480/filters:fill(FFFFFF):quality(90):format(webp)/_img_productos/mouse-logitech-m105-foto-negro1.jpg",
+    "id": 7
+  },
+  {
+    "title": "Teclado",
+    "price": 220,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_997616-MLU50678993909_072022-O.webp",
+    "id": 8
+  },
+  {
+    "title": "Termo",
+    "price": 160,
+    "thumbnail": "https://febo.com.uy/wp-content/uploads/2019/12/746128-MLU40163013890_122019-O.jpg",
+    "id": 9
+  },
+  {
+    "title": "Parlantes",
+    "price": 80,
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_2X_849925-MLU45756170955_042021-F.webp",
+    "id": 10
+  }
+]
