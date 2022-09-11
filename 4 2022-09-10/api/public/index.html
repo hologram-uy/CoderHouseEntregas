@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formularios de Ingreso</title>
+</head>
+<div class="content">
+
+  <body>
+    <h2>Ingrese Producto</h2>
+    <form action="/api/productos/" method="POST">
+
+      <table>
+        <tr>
+          <td>Título:</td>
+          <td>
+            <input type="text" required="true" name="title" maxlength="50" placeholder="Juego de tazas." />
+          </td>
+        </tr>
+        <tr>
+          <td>Precio:</td>
+          <td><input type="number" min="1" max="3000" required="true" name="price" id="price" placeholder="100.00" />
+          </td>
+        </tr>
+        <tr>
+          <td>URI:</td>
+          <td><input type="url" required="true" name="thumbnail" id="thumbnail" placeholder="https://example.com"
+              pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" />
+          </td>
+        </tr>
+      </table>
+      <br />
+      <button>Enviar</button>
+    </form>
+  </body>
+</div>
+
+</html>
