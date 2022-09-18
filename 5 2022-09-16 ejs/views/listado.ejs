@@ -1,0 +1,17 @@
+<header>
+  <%- include('./partials/encabezado.ejs') %>
+</header>
+
+<body>
+  <div class="container mt-3">
+    <div class="jumbotron">
+      <h1 style="color: blue">Vista de Productos [EJS]</h1>
+      <br />
+      <%- include('./partials/tabla.ejs', productos) %>
+    </div>
+    <form action="/" method="get">
+      <button class="btn btn-success mt-3 mb-5">Volver</button>
+    </form>
+  </div>
+</body>
+<%- include('./partials/pie.ejs') %>
