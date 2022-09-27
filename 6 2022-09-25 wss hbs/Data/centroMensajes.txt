@@ -1,0 +1,38 @@
+[
+  {
+    "author": "syncroDesdeSynkro",
+    "text": "Testing 1",
+    "myTime": "2022-09-27T22:19:08.902Z",
+    "id": 1
+  },
+  {
+    "author": "socialmedia",
+    "text": "Testing 1",
+    "myTime": "2022-09-27T22:19:08.902Z",
+    "id": 2
+  },
+  {
+    "author": "Hologram",
+    "text": "1.. 2.. 3..",
+    "myTime": "2022-09-27T22:19:41.951Z",
+    "id": 3
+  },
+  {
+    "author": "Hologram",
+    "text": "Testing 1",
+    "myTime": "2022-09-27T22:20:56.366Z",
+    "id": 4
+  },
+  {
+    "author": "Hologram",
+    "text": "sdf",
+    "myTime": "2022-09-27T22:22:39.246Z",
+    "id": 5
+  },
+  {
+    "author": "hologram@mail",
+    "text": "",
+    "myTime": "2022-09-27T22:22:39.246Z",
+    "id": 6
+  }
+]
