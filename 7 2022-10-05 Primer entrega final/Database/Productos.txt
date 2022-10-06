@@ -1,0 +1,52 @@
+[
+  {
+    "nombre": "Mouse inalámbrico",
+    "descripcion": "Mouse Logitech H100",
+    "codigo": "111111",
+    "foto": "https://www.example.com.uy",
+    "precio": 600,
+    "stock": 20,
+    "id": 1,
+    "timeStamp": 1664931045998
+  },
+  {
+    "nombre": "WebCam",
+    "descripcion": "Cámara web full HD.",
+    "codigo": "222222",
+    "foto": "https://www.example.com.uy",
+    "precio": 400,
+    "stock": 30,
+    "id": 2,
+    "timeStamp": 1664931090172
+  },
+  {
+    "nombre": "Disco duro externo",
+    "descripcion": "HDD externo marca Western Digital.",
+    "codigo": "333333",
+    "foto": "https://www.example.com.uy",
+    "precio": 1500,
+    "stock": 20,
+    "id": 3,
+    "timeStamp": 1664936636907
+  },
+  {
+    "nombre": "Cartuchera",
+    "descripcion": "Contenedor con útiles.",
+    "codigo": "444444",
+    "foto": "https://www.example.com.uy",
+    "precio": 230.5,
+    "stock": 10,
+    "id": 4,
+    "timeStamp": 1665008006632
+  },
+  {
+    "nombre": "Mouse cableado",
+    "descripcion": "Mouse OTRAMARCA H100",
+    "codigo": "111111",
+    "foto": "https://www.example.com.uy",
+    "precio": 600,
+    "stock": 20,
+    "timeStamp": 1665013576832,
+    "id": 5
+  }
+]

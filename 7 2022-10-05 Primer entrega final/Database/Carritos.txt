@@ -1,0 +1,59 @@
+[
+  {
+    "timeStamp": 1665017800753,
+    "productos": [
+      {
+        "nombre": "caramelos",
+        "descripcion": "bolsa de caramelos candy",
+        "codigo": "2222222",
+        "foto": "https://www.example.com.uy",
+        "precio": 10.5,
+        "stock": 20,
+        "id": 3,
+        "timeStamp": 1664936636907
+      },
+      {
+        "nombre": "yerba",
+        "descripcion": "yerba 100%",
+        "codigo": "222222",
+        "foto": "https://www.example.com.uy",
+        "precio": 15.5,
+        "stock": 20,
+        "id": 1,
+        "timeStamp": 1664931045998
+      }
+    ],
+    "id": 1
+  },
+  {
+    "timeStamp": 1665005126492,
+    "productos": [
+      {
+        "nombre": "yerba",
+        "descripcion": "yerba 100%",
+        "codigo": "222222",
+        "foto": "https://www.example.com.uy",
+        "precio": 15.5,
+        "stock": 20,
+        "id": 1,
+        "timeStamp": 1664931045998
+      },
+      {
+        "nombre": "pepsi",
+        "descripcion": "bebida cola 100%",
+        "codigo": "123456",
+        "foto": "https://www.example.com.uy",
+        "precio": 20.5,
+        "stock": 100,
+        "id": 2,
+        "timeStamp": 1664931090172
+      }
+    ],
+    "id": 2
+  },
+  {
+    "timeStamp": 1664947811908,
+    "productos": [],
+    "id": "3"
+  }
+]
