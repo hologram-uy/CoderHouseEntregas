@@ -9,93 +9,74 @@ export default class Carrito {
     }
 
     async get(id) {
-        try {
-            const carr = await this.contCarr.getById(id);
-            return carr || 404;
-        } catch (e) {
-            return e;
-        }
+        const carr = await this.contCarr.getById(id);
+        return carr || false;
     }
 
     async getAll() {
-        try {
-            const carritos = await this.contCarr.getAll();
-            return carritos || 404;
-        } catch (e) {
-            return e;
-        }
+        const carritos = await this.contCarr.getAll();
+        return carritos || false;
     }
 
     async save() {
-        try {
-            const carr = {
-                timeStamp: Date.now(),
-                productos: []
-            };
-            return await this.contCarr.save(carr) || 400;
-        } catch (e) {
-            return e;
-        }
+        const carr = {
+            timeStamp: Date.now(),
+            productos: []
+        };
+        return await this.contCarr.save(carr) || false;
     }
 
     async addProd(idCarr, idProd) {
-        try {
-            const prod = await this.contProd.getById(idProd);
-            if (!prod) return 404;
+        const prod = await this.contProd.getById(idProd);
+        if (!prod) return false;
 
-            let target = await this.contCarr.getById(idCarr);
-            if (!target) return 404;
+        let target = await this.contCarr.getById(idCarr);
+        if (!target) return false;
 
-            let misCarritos = await this.contCarr.getAll();
-            if (!misCarritos) return 404;
+        let misCarritos = await this.contCarr.getAll();
+        if (!misCarritos) return false;
 
-            misCarritos = misCarritos.filter((carr) => carr.id != target.id)
-            target.productos.push(prod);
-            target.timeStamp = Date.now();
-            target.id = parseInt(idCarr);
-            misCarritos.push(target);
-            misCarritos.sort((a, b) => a.id - b.id);
+        misCarritos = misCarritos.filter((carr) => carr.id != target.id)
+        target.productos.push(prod);
+        target.timeStamp = Date.now();
+        target.id = parseInt(idCarr);
+        misCarritos.push(target);
+        misCarritos.sort((a, b) => a.id - b.id);
+        this.contCarr.saveList(misCarritos);
 
-            return this.contCarr.saveList(misCarritos);
-        } catch (e) {
-            return e;
-        }
+        return true;
     }
 
     async delete(id) {
-        try {
-            const deleted = await this.contCarr.deleteById(id);
-            return deleted;
-        } catch (e) {
-            return e;
+        const prodEliminado = await this.contCarr.deleteById(id);
+        console.log(prodEliminado);
+        if (prodEliminado == true) {
+            return true;
         }
+        return false;
     }
 
     async deleteProd(idCarr, idProd) {
-        try {
-            const prod = await this.contProd.getById(idProd);
-            if (!prod) return 404;
-            
-            let misCarritos = await this.contCarr.getAll();
-            if (!misCarritos) return 404;
+        const prod = await this.contProd.getById(idProd);
+        if (!prod) return false;
 
-            let target = await this.contCarr.getById(idCarr);
-            if (!target) return 404;
+        let misCarritos = await this.contCarr.getAll();
+        if (!misCarritos) return false;
 
-            misCarritos = misCarritos.filter((carr) => carr.id != idCarr);
+        let target = await this.contCarr.getById(idCarr);
+        if (!target) return false;
 
-            target.productos = target.productos.filter((prod) => prod.id != idProd);
-            target.timeStamp = Date.now();
-            target.id = parseInt(idCarr);
+        misCarritos = misCarritos.filter((carr) => carr.id != idCarr);
 
-            misCarritos.push(target);
-            misCarritos.sort((a, b) => a.id - b.id);
+        target.productos = target.productos.filter((prod) => prod.id != idProd);
+        target.timeStamp = Date.now();
+        target.id = parseInt(idCarr);
 
-            this.contCarr.saveList(misCarritos);
+        misCarritos.push(target);
+        misCarritos.sort((a, b) => a.id - b.id);
 
-            return 200;
-        } catch (e) {
-            return e;
-        }
+        this.contCarr.saveList(misCarritos);
+
+        return true;
     }
 }

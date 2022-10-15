@@ -95,13 +95,14 @@ export default class Contenedor {
         return (`Error en función getById(): \n El directorio ${this.filePath} no existe.`);
       } else {
         const aux = await this.getById(id);
-        const content = await this.getAll();
-        const eliminado = content.filter(prod => prod.id != id);
-
-        await fs.promises.writeFile(this.filePath, JSON.stringify(eliminado, null, 2));
-
-        if (aux) return 200;
-        else return 404;
+        if (aux) {
+          const content = await this.getAll();
+          const eliminado = content.filter(prod => prod.id != id);
+          await fs.promises.writeFile(this.filePath, JSON.stringify(eliminado, null, 2));
+          return true;
+        } else {
+          return false;
+        }
       }
     } catch (e) {
       return e;

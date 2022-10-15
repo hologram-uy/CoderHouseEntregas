@@ -6,49 +6,46 @@ export default class Producto {
     }
 
     async get(id) {
-        try {
-            const producto = await this.cont.getById(id);            
-            return producto || 404;
-        } catch (e) {
-            return e;
-        }
+        const producto = await this.cont.getById(id);
+        return producto || false;
     }
 
     async getAll() {
-        try {
-            const productos = await this.cont.getAll();
-            return productos || 404;
-        } catch (e) {
-            return e;
-        }
+        const productos = await this.cont.getAll();
+        return productos || false;
     }
 
     async save(prod) {
-        try {
-            prod.timeStamp = Date.now();
-            const p = this.cont.save(prod);
-            return p;
-        } catch (e) {
-            return e;
-        }
+        prod.timeStamp = Date.now();
+        const p = this.cont.save(prod);
+        return p;
     }
 
     async update(prod, id) {
-        try {           
-            await this.cont.deleteById(id);
-            await this.cont.save(prod);
-        } catch (e) {
-            return e;
+        const productos = await this.cont.getAll();
+        const productoModificado = productos.find(p => p.id == id);
+        if (productoModificado) {
+            productoModificado.nombre = prod.nombre;
+            productoModificado.descripcion = prod.descripcion;
+            productoModificado.codigo = prod.codigo;
+            productoModificado.foto = prod.foto;
+            productoModificado.precio = prod.precio;
+            productoModificado.timeStamp = Date.now();
+            await this.cont.saveList(productos);
+            return true;
+        } else {
+            return false;
         }
     }
 
+    async oldUpdate(prod, id) {
+        await this.cont.deleteById(id);
+        await this.cont.save(prod);
+    }
+
     async delete(id) {
-        try {
-            const deleted = await this.cont.deleteById(id);
-            return deleted;
-        } catch (e) {
-            return e;
-        }
+        const deleted = await this.cont.deleteById(id);
+        return deleted;
     }
 }
 
