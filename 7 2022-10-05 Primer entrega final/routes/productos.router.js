@@ -1,114 +1,74 @@
-const Productos = require('../api/productos.js');
-const ContenedorBD = require('../model/ContenedorBD.js');
-const express = require("express");
+import express from "express";
+import Producto from "../classes/Producto.class.js";
+
 const router = express.Router();
 
-const bdCont = new ContenedorBD('productos');
-const productos = new Productos();
+const producto = new Producto();
 
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
-
-/**
- *  1. GET '/api/productos' -> devuelve todos los productos. 
- */
-router.get("/productos/list", async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const lista = await bdCont.getAll();
-        return res.status(200).json({ lista });
+        const listaProductos = await producto.getAll();
+        listaProductos == false ?
+            res.status(404).send({ error: 'No hay productos en la base.' }) :
+            res.status(200).send({ response: listaProductos });
+    } catch (e) {
+        res.status(500).send({ error: e.message });
+    }
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+        const productoBuscado = await producto.get(req.params.id);
+        productoBuscado == false ?
+            res.status(404).send({ error: 'No hay productos en la base.' }) :
+            res.status(200).send({ response: productoBuscado });
+    } catch (e) {
+        res.status(500).send({ error: e.message });
+    }
+});
+
+router.post('/', validarAdmin, async (req, res) => {
+    try {
+        const productoCreado = await producto.save(req.body);
+        productoCreado == false ?
+            res.status(400).send({ error: 'No fue posible agregar el producto: Formato incorrecto.' }) :
+            res.status(201).send({ response: productoCreado });
+    } catch (e) {
+        res.status(500).send({ error: e.message });
+    }
+});
+
+router.put('/:id', validarAdmin, async (req, res) => {
+    try {
+        const productoActualizado = await producto.update(req.body, req.params.id);
+        productoActualizado == false ?
+            res.status(400).send({ error: 'No fue posible agregar el producto: Formato incorrecto.' }) :
+            res.status(201).send({ response: 'Producto actualizado.' });
+    } catch (e) {
+        res.status(500).send({ error: e.message });
+    }
+});
+
+router.delete('/:id', validarAdmin, async (req, res) => {
+    try {
+        const productoBorrado = await producto.delete(req.params.id);
+        productoBorrado == true ?
+            res.status(200).send({ response: 'Producto eliminado.' }) :
+            res.status(404).send({ error: 'No fue posible eliminar el producto: No se encontró el id.' });
     } catch (e) {
         res.status(500).send({ error: e.message });
     }
 });
 
 /**
- *  2. GET '/api/productos/listar/:id' -> devuelve un producto según su id.
- */
-router.get("/productos/list/:id", async (req, res) => {
-    try {
-        const id = parseInt(req.params.id);
-        if (isNaN(id) || id == undefined) {
-            return res.status(400).json({ error: 'El id ingresado no es válido.' });
-        } else {
-            const resultado = await bdCont.getById(id);
-            if (resultado === undefined || resultado.length == 0) {
-                return res.status(404).json({ error: 'El id ingresado no existe.' });
-            } else {
-                return res.status(200).json({ resultado });
-            }
-        }
-    } catch (e) {
-        res.status(500).send({ error: e.message });
+ * ### Function para validar "admin"
+ **/
+function validarAdmin(req, res, next) {
+    if (req.query.admin) {
+        next();
+    } else {
+        res.status(403).send({ error: 'Permisos insuficientes.' });
     }
-});
+}
 
-/**
- *  3. POST '/api/productos' -> recibe y agrega un producto, y lo devuelve con su id asignado.
- */
-router.post("/productos/save", async (req, res) => {
-    try {
-        let producto = req.body;
-        await bdCont.save(producto);
-        //res.redirect('/');
-        return res.status(200).send({ response: `El producto fue agregado con éxito.` });
-    } catch (e) {
-        res.status(500).send({ error: e.message });
-    }
-});
-
-/**
- *  4. PUT '/api/productos/:id' -> recibe y actualiza un producto según su id.
- */
-router.put("/productos/update/:id", async (req, res) => {
-    try {
-        const id = parseInt(req.params.id);
-        if (isNaN(id) || id == undefined) {
-            return res.status(400).json({ error: 'El id ingresado no es válido.' });
-        } else {
-            let producto = req.body;
-            if (producto) {
-                await bdCont.update(producto, id);
-                return res.status(201).json({ producto });
-            } else {
-                return res.status(400).send({ error: 'El id especificado no existe.' });
-            }
-        }
-    } catch (e) {
-        res.status(500).send({ error: e.message });
-    }
-});
-
-/**
- *  5. DELETE '/api/productos/:id' -> elimina un producto según su id.
- */
-router.delete("/productos/delete/:id", async (req, res) => {
-    try {
-        const id = parseInt(req.params.id);
-        if (isNaN(id) || id == undefined) {
-            return res.status(400).json({ error: 'El id ingresado no es válido.' });
-        } else {
-            const resultado = await bdCont.getById(id);
-            if (resultado.length > 0) {
-                await bdCont.deleteById(id);
-                return res.status(201).json(`El producto fue eliminado.`);
-            } else {
-                return res.status(400).json({ error: 'El id especificado no existe.' });
-            }
-        }
-    } catch (e) {
-        res.status(500).send({ error: e.message });
-    }
-});
-
-router.get('*', (req, res) => {
-    try {
-        res.status(404).render('404', {
-            titulo: '404 - algo salió mal..',
-            info: 'La URL especificada no se encuentra en este servidor.'
-        });
-    } catch (e) {
-        res.status(500).send({ error: e.message });
-    }
-});
-
-module.exports = { router };
+export default router;
