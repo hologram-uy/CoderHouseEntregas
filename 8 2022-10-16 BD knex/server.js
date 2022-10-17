@@ -40,6 +40,9 @@ app.use('/api', router);
 const bdCont = new ContenedorBD('productos');
 const bdMjes = new MensajesBD();
 const messages = [];
+/* (async firstLoad => {
+    const eProductos = await bdCont.getAll();
+})(); */
 
 const server = httpServer.listen(8080, () => console.log("Servidor levantado en el puerto " + server.address().port));
 server.on("error", (e) => console.log(`hubo un error ${e}`));
@@ -53,10 +56,10 @@ app.get("/", (req, res) => {
 
 app.get("/listado", async (req, res) => {
     try {
-        const prods = await bdCont.getAll();
+        const eProductos = await bdCont.getAll();
         res.render("listado", {
-            productos: prods,
-            contenido: prods.length
+            productos: eProductos,
+            contenido: eProductos.length
         });
     } catch (e) {
         res.status(500).send({ error: e.message });
@@ -64,28 +67,32 @@ app.get("/listado", async (req, res) => {
 });
 
 io.on('connection', async (socket) => {
-    console.log('Nuevo cliente conectado..')
+    try {
+        const eProductos = await bdCont.getAll();
+        console.log('Nuevo cliente conectado..')
+        /**
+         *  Productos
+         */
+        socket.emit('productos', eProductos);
 
-    /**
-     *  Productos
-     */
-    socket.emit('productos', await bdCont.getAll());
+        socket.on('new-prod', async (data) => {
+            const p = await bdCont.save(data);
+            eProductos.push(data);
+            io.sockets.emit('productos', eProductos);
+        });
 
-    socket.on('new-prod', async (data) => {
-        await bdCont.save(data);
-        const prods = await bdCont.getAll();
-        io.sockets.emit('productos', prods);
-    });
-
-    /**
-     *  Mensajes
-     */
-    socket.emit('mensajes', messages);
-    socket.on("new-message", (data) => {
-        messages.push(data);
-        bdMjes.save(data);
-        io.sockets.emit("messages", messages);
-    });
+        /**
+         *  Mensajes
+         */
+        socket.emit('mensajes', messages);
+        socket.on("new-message", (data) => {
+            messages.push(data);
+            bdMjes.save(data);
+            io.sockets.emit("messages", messages);
+        });
+    } catch (e) {
+        throw new Error(e.message);
+    }
 });
 
 
