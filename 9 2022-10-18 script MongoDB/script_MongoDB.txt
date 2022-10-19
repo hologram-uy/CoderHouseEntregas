@@ -1,0 +1,172 @@
+Consigna: 
+Utilizando Mongo Shell, crear una base de datos llamada ecommerce que contenga
+dos colecciones: mensajes y productos.
+
+1) Agregar 10 documentos con valores distintos a las colecciones mensajes y productos. El
+formato de los documentos debe estar en correspondencia con el que venimos utilizando en
+el entregable con base de datos MariaDB. 
+
+2) Definir las claves de los documentos en relación a los campos de las tablas de esa base. 
+En el caso de los productos, poner valores al campo precio entre los 100 y 5000 pesos(eligiendo
+valores intermedios, ej: 120, 580, 900, 1280, 1700, 2300, 2860, 3350, 4320, 4990). 
+
+
+use ecommerce
+db.productos.insertMany([
+	{ 'descripcion' : 'Microscope', 
+	  'codigo' : 11111,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/microscope-lab-science-school-512.png',
+	  'precio' : 120,	  
+	  'timeStamp' : 1666103212979
+	},
+	{ 'descripcion' : 'Pizarra', 
+	  'codigo' : 22222,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-512.png',
+	  'precio' : 580,	  
+	  'timeStamp' : 1666103241469
+	},
+	{ 'descripcion' : 'Acuarelas', 
+	  'codigo' : 33333,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-512.png',
+	  'precio' : 900,
+	  'timeStamp' : 1666103251967
+	},
+	{ 'descripcion' : 'Probeta', 
+	  'codigo' : 44444,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/tube-lab-science-school-512.png',
+	  'precio' : 1280,
+	  'timeStamp' : 1666103262939
+	},
+	{ 'descripcion' : 'Clip', 
+	  'codigo' : 55555,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/paper-clip-academic-note-exam-512.png',
+	  'precio' : 1700,
+	  'timeStamp' : 1666103272820
+	},
+	{ 'descripcion' : 'Calculadora', 
+	  'codigo' : 66666,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png',
+	  'precio' : 2300,
+	  'timeStamp' : 1666103293423
+	},
+	{ 'descripcion' : 'Gorro graduación', 
+	  'codigo' : 77777,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/graduation-square-academic-cap-school-512.png',
+	  'precio' : 2860,
+	  'timeStamp' : 1666103333889
+	},
+	{ 'descripcion' : 'Reloj despertador', 
+	  'codigo' : 88888,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/clock-stopwatch-timer-time-512.png',
+	  'precio' : 3350,
+	  'timeStamp' : 1666103360612
+	},
+	{ 'descripcion' : 'Juego de Geometría', 
+	  'codigo' : 99999,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png',
+	  'precio' : 4320,
+	  'timeStamp' : 1666103378648
+	},
+	{ 'descripcion' : 'Globo terráqueo', 
+	  'codigo' : 78787,
+	  'foto' : 'https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-512.png',
+	  'precio' : 4990,
+	  'timeStamp' : 1666103412357
+	}	
+])
+
+db.mensajes.insertMany([
+	{ 'author' : 'Miguel', 
+	  'text' : 'Saludos',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Gabriel', 
+	  'text' : 'Hola',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Uriel', 
+	  'text' : '¿hola qué tal?',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Chamuel', 
+	  'text' : 'Saludos ¿qué tal?',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Rafael', 
+	  'text' : 'Consulta por stock',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Jofiel', 
+	  'text' : 'Consulta por fechas de entrega',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Zadkiel', 
+	  'text' : 'Bienvenidos',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Ezequiel', 
+	  'text' : 'Saludso, consulta.',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Caín', 
+	  'text' : '...',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	},
+	{ 'author' : 'Abel', 
+	  'text' : '!!!',
+	  'myTime' : '2022-10-18T14:45:08.902Z'
+	}	
+])
+
+3) Listar todos los documentos en cada colección.
+
+--Mensajes
+db.mensajes.find().pretty()
+
+--Productos
+db.productos.find().pretty()
+
+
+4) Mostrar la cantidad de documentos almacenados en cada una de ellas.
+
+db.productos.count()
+db.mensajes.count()
+
+5) Realizar un CRUD sobre la colección de productos:
+	a) Agregar un producto más en la colección de productos
+	b) Realizar una consulta por nombre de producto específico:
+		i) Listar los productos con precio menor a 1000 pesos. -- hecho
+		ii) Listar los productos con precio entre los 1000 a 3000 pesos. -- hecho
+		iii) Listar los productos con precio mayor a 3000 pesos. -- hecho
+		iv) Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+	c) Hacer una actualización sobre todos los productos, agregando el campo stock a todos
+	ellos con un valor de 100. -- hecho
+	d) Cambiar el stock a cero de los productos con precios mayores a 4000 pesos. -- hecho
+	e) Borrar los productos con precio menor a 1000 pesos -- hecho
+
+
+a) db.productos.insertOne(
+	{ 'descripcion' : 'Agenda', 
+	  'codigo' : 87878,
+	  'foto' : 'https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/note-512.png',
+	  'precio' : 5025,
+	  'stock' : 100,
+	  'timeStamp' : 1666115776223
+	})
+
+b) 	i. 		db.productos.find({precio:{$lt:1000}})
+	ii. 	db.productos.find({precio:{$gte:1000, $lte:3000}})
+	iii.	db.productos.find({precio:{$gt:3000}})
+	iv.		db.productos.find({},{'descripcion':1, _id:0}).skip(2).limit(1).sort({'precio':1})
+		
+c) db.productos.updateMany({},{$set:{'stock':100}},{upsert:false, multi:true})
+
+d) db.productos.update({precio:{$gt:4000}}, {$set:{'stock':0}}, {multi:true})
+
+e) db.productos.deleteMany({precio:{$lt:1000}})
+
+
+6) Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce.
+Verificar que pepe no pueda cambiar la información.
+
+db.createUser({user: 'pepe', pwd: 'asd456', roles: [{role:'read', db: 'ecommerce'}]})
