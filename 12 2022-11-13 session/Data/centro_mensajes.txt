@@ -1,0 +1,92 @@
+[
+  {
+    "entities": {
+      "author": {
+        "user@email": {
+          "id": "user@email",
+          "nombre": "Pepe",
+          "apellido": "Díaz",
+          "edad": "40",
+          "alias": "Pepito",
+          "avatar": "http://www.example.com/"
+        }
+      },
+      "chatSchema": {
+        "mensajes": {
+          "id": "mensajes",
+          "author": "user@email",
+          "text": "hola"
+        }
+      }
+    },
+    "result": [
+      "mensajes"
+    ],
+    "id": 1
+  },
+  {
+    "entities": {
+      "author": {
+        "user@email": {
+          "id": "user@email",
+          "nombre": "Pepe",
+          "apellido": "Díaz",
+          "edad": "40",
+          "alias": "Pepito",
+          "avatar": "http://www.example.com/"
+        }
+      },
+      "chatSchema": {
+        "mensajes": {
+          "id": "mensajes",
+          "author": "user@email",
+          "text": "que tal"
+        }
+      }
+    },
+    "result": [
+      "mensajes",
+      "mensajes"
+    ],
+    "id": 2
+  },
+  {
+    "entities": {
+      "author": {
+        "user@email": {
+          "id": "user@email",
+          "nombre": "Pepe",
+          "apellido": "Díaz",
+          "edad": "40",
+          "alias": "Pepito",
+          "avatar": "http://www.example.com/"
+        }
+      },
+      "chatSchema": {
+        "mensajes": {
+          "id": "mensajes",
+          "author": "user@email",
+          "text": "adsf"
+        }
+      }
+    },
+    "result": [
+      "mensajes",
+      "mensajes",
+      "mensajes"
+    ],
+    "id": 3
+  },
+  {
+    "id": 4,
+    "author": {
+      "id": "user@email",
+      "nombre": "Pepe",
+      "apellido": "Díaz",
+      "edad": "40",
+      "alias": "Pepito",
+      "avatar": "http://www.example.com/"
+    },
+    "text": "asfd"
+  }
+]
